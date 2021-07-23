@@ -1,12 +1,23 @@
-
+let xPos = 150;
+let xPos2 = 150;
+let xPos3 = 150;
+let xPos4 = 150;
+let direction = 1;
+let direction2 = 1;
+let direction3 = 1;
 let myXPos = 100;
 let myYPos = 100;
-let enXPos = 300;
-let enYPos = 300;
+let enXPos = 1200;
+let enYPos = 500;
 
 let myLeft, myRight, myTop, myBottom; 
 let enLeft, enRight, enTop, enBottom; 
 
+let Charmander; 
+
+function preload() {
+Charmander = loadImage("images_and_sounds/images/charmander.png");
+}
 
 
 function setup() {
@@ -19,13 +30,61 @@ function setup() {
 function draw() {
     background(0);
 
-    // Enemy Box
+    //  Safe Zone
+    fill(0,255,0, 110);
+    rect(0,0,200,1250)
+    // Safe Zone 2
+    fill(0,255,0, 110);
+    rect(1200,0,200,1250)
+    
+
+
+    //Enemy  Circle1
+    fill(255,0,0);
+    ellipse(xPos,50,50,50);
+// speed
+    xPos += 3 * direction;
+
+    if(xPos < 150 || xPos>1100){
+         direction*= -1;
+    }
+    
+    //Enemy  Circle 2
+    fill(255,0,0);
+    ellipse(xPos2,150,50,50);
+// speed
+    xPos2 += 3 * direction;
+
+    if(xPos2 < 150 || xPos2>1100){
+         direction*= -1;
+    }
+
+    //Enemy  Circle3
+    fill(255,0,0);
+    ellipse(xPos3,270,50,50);
+// speed
+    xPos3 += 3 * direction;
+
+    if(xPos3 < 150 || xPos3>1100){
+         direction*= -1;
+    }
+    //Enemy  Circle4
+    fill(255,0,0);
+    ellipse(xPos4,400,50,50);
+// speed
+    xPos4 += 3 * direction;
+
+    if(xPos4 < 150 || xPos4>1100){
+         direction*= -1;
+    }
+
+    // blue end goal Box
     fill(0, 0, 255);
     rect(enXPos, enYPos, 50, 50);
 
-    // Self Box
-    fill(255, 0, 0);
-    rect(myXPos, myYPos, 25, 25);
+    // Player Box
+    fill(100, 50, 255);
+    image(Charmander,myXPos, myYPos, 55, 55);
     
     
 
@@ -72,7 +131,8 @@ function draw() {
         fill(random(255),random(255),random(255));
         textSize(22);
         text("Im colliding with my enemy. Ouch!", 140, 480);
+        rect(myXPos, myYPos, 25, 25);
+
     }
 
 }
-
